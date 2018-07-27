@@ -1,0 +1,31 @@
+.accordion{
+    width: 300px;
+    border-bottom: solid 1px #808080;
+    margin: 30px auto;
+    padding: 0px;
+}
+.accordion dt{
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    margin: 0px;
+    width: 300px;
+    padding: 10px;
+    text-align: center;
+    border-top: solid 1px #808080;
+    border-left: solid 1px #808080;
+    border-right: solid 1px #808080;
+    background-color: #E0E0E0;
+    cursor: pointer;
+}
+.accordion dd{
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    margin: 0px;
+    width: 300px;
+    padding: 10px;
+    text-align: left;
+    border-top: solid 1px #808080;
+    border-left: solid 1px #808080;
+    border-right: solid 1px #808080;
+    display: none;
+}

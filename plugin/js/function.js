@@ -64,4 +64,4 @@ LEIHAUOLI_PLUGIN_ACCORDION = {
 
 $(window).on('load',function(){
     LEIHAUOLI_PLUGIN_ACCORDION.init();
-})
+});

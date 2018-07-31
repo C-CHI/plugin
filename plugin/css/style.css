@@ -1,10 +1,10 @@
-.accordion{
+.accordion,.accordion2{
     width: 300px;
     border-bottom: solid 1px #808080;
     margin: 30px auto;
     padding: 0px;
 }
-.accordion dt{
+.accordion dt,.accordion2 dt{
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     margin: 0px;
@@ -17,7 +17,7 @@
     background-color: #E0E0E0;
     cursor: pointer;
 }
-.accordion dd{
+.accordion dd,.accordion2 dd{
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
     margin: 0px;
@@ -28,4 +28,16 @@
     border-left: solid 1px #808080;
     border-right: solid 1px #808080;
     display: none;
+}
+.accordion-wrapper {
+    list-style: none;
+    text-align: center;
+    padding-left: 0px;
+    overflow: hidden;
+}
+.accordion-wrapper > li {
+    padding: 10px;
+}
+.trigger {
+    text-align: center;
 }

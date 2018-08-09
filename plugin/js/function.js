@@ -161,9 +161,51 @@ LEIHAUOLI_PLUGIN.DIALOG.prototype = {
     }
 };
 
+LEIHAUOLI_PLUGIN.TAB_CHANGE = function($tabSelector,$tabContainer){
+    this.$selector = $tabSelector;
+    this.$container = $tabContainer;
+    this.init();
+};
+
+LEIHAUOLI_PLUGIN.TAB_CHANGE.prototype = {
+
+    init : function(){
+        this.setParameters();
+        this.bindEvent();
+    },
+
+    setParameters : function(){
+        this.$trigger = this.$selector.children('li');
+        this.$container = this.$container.children('li');
+    },
+
+    bindEvent : function(){
+        var myself = this;
+
+        this.$trigger.on('click',function(e){
+            e.preventDefault();
+            myself.$trigger.removeClass('selected');
+            $(this).addClass('selected');
+            myself.change($(this).children('a').attr('href').slice(1));
+        });
+    },
+
+    change : function(containerName){
+        this.$container.removeClass('selected');
+        this.$container.each(function(){
+            var flg = $(this).attr('id') == containerName;
+            if(flg == true){
+                $(this).addClass('selected');
+            }
+        })
+    }
+
+};
+
 $(window).on('load',function(){
     new LEIHAUOLI_PLUGIN.ACCORDION($('.accordion'),600);
     new LEIHAUOLI_PLUGIN.ACCORDION($('.accordion2'),600);
     new LEIHAUOLI_PLUGIN.ACCORDION_MORE_DISPLAY($('.accordion-wrapper'),$('.trigger'),600,3,2);
     new LEIHAUOLI_PLUGIN.DIALOG($('#open'),$('#close'),$('#dialog'));
+    new LEIHAUOLI_PLUGIN.TAB_CHANGE($('.tab-selector'),$('.tab-container'));
 });

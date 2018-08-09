@@ -1,14 +1,14 @@
 
 var LEIHAUOLI_PLUGIN = LEIHAUOLI_PLUGIN || {};
 
-LEIHAUOLI_PLUGIN_ACCORDION = function($wrapper,timer){
+LEIHAUOLI_PLUGIN.ACCORDION = function($wrapper,timer){
     this.$wrapper = $wrapper;
     this.hideValue = 0;
     this.changeTime = timer;
     this.init();
 };
 
-LEIHAUOLI_PLUGIN_ACCORDION.prototype = {
+LEIHAUOLI_PLUGIN.ACCORDION.prototype = {
 
     init : function(){
         this.setParamerters();
@@ -63,7 +63,7 @@ LEIHAUOLI_PLUGIN_ACCORDION.prototype = {
 
 }
 
-LEIHAUOLI_PLUGIN_ACCORDION_MORE_DISPLAY = function($wrapper,$trigger,animationSpeed,firstDisplay,nextDisplay){
+LEIHAUOLI_PLUGIN.ACCORDION_MORE_DISPLAY = function($wrapper,$trigger,animationSpeed,firstDisplay,nextDisplay){
     this.$wrapper = $wrapper;
     this.$triggerBox = $trigger;
     this.firstDisplay = firstDisplay;
@@ -72,7 +72,7 @@ LEIHAUOLI_PLUGIN_ACCORDION_MORE_DISPLAY = function($wrapper,$trigger,animationSp
     this.init();
 };
 
-LEIHAUOLI_PLUGIN_ACCORDION_MORE_DISPLAY.prototype = {
+LEIHAUOLI_PLUGIN.ACCORDION_MORE_DISPLAY.prototype = {
     
     init : function(){
         this.setParamerters();
@@ -126,10 +126,44 @@ LEIHAUOLI_PLUGIN_ACCORDION_MORE_DISPLAY.prototype = {
         this.defaultContents();
     }
 
-}
+};
+
+LEIHAUOLI_PLUGIN.DIALOG = function($open,$close,$dialog){
+    this.$openTrigger = $open;
+    this.$closeTrigger = $close;
+    this.$target = $dialog;
+    this.init();
+};
+
+LEIHAUOLI_PLUGIN.DIALOG.prototype = {
+    init : function(){
+        this.setParameters();
+        this.bindEvent();
+    },
+
+    setParameters : function(){
+        this.$background = $('.background');
+    },
+
+    bindEvent : function(){
+        this.$openTrigger.on('click',$.proxy(this.modalDisplay,this));
+        this.$closeTrigger.on('click',$.proxy(this.modalHide,this));
+    },
+
+    modalDisplay : function(){
+        this.$target.css({'display':'block'});
+        this.$background.addClass('background').css({'display':'block'});
+    },
+
+    modalHide : function(){
+        this.$target.css({'display':'none'});
+        this.$background.css({'display':'none'}).removeClass('background');
+    }
+};
 
 $(window).on('load',function(){
-    new LEIHAUOLI_PLUGIN_ACCORDION($('.accordion'),600);
-    new LEIHAUOLI_PLUGIN_ACCORDION($('.accordion2'),600);
-    new LEIHAUOLI_PLUGIN_ACCORDION_MORE_DISPLAY($('.accordion-wrapper'),$('.trigger'),600,3,2);
+    new LEIHAUOLI_PLUGIN.ACCORDION($('.accordion'),600);
+    new LEIHAUOLI_PLUGIN.ACCORDION($('.accordion2'),600);
+    new LEIHAUOLI_PLUGIN.ACCORDION_MORE_DISPLAY($('.accordion-wrapper'),$('.trigger'),600,3,2);
+    new LEIHAUOLI_PLUGIN.DIALOG($('#open'),$('#close'),$('#dialog'));
 });
